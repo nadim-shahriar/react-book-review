@@ -8,6 +8,8 @@ import ErrorElement from './Components/ErrorElement/ErrorElement'
 import ListedBooks from './Components/ListedBooks/ListedBooks'
 import ViewAllBooks from './Components/ViewAllBBooks/ViewAllBooks'
 import BookDetails from './Components/BookDetailes/BookDetails'
+import ReadBooks from './Components/ListedBooks/ReadBooks/ReadBooks'
+import Wishlist from './Components/ListedBooks/Wishlist/Wishlist'
 
 const router = createBrowserRouter([
   {
@@ -22,7 +24,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/listed-books',
-        element: <ListedBooks></ListedBooks>
+        element: <ListedBooks></ListedBooks>,
+        loader: ()=> fetch('/books.json'),
+        children:[
+          {
+            path: '/listed-books',
+            element:<ReadBooks></ReadBooks>,
+            loader:()=> fetch('/books.json')
+          },
+          {
+            path: '/listed-books/wishlist',
+            element:<Wishlist></Wishlist>
+          }
+        ]
       },
       {
         path: '/all-books',

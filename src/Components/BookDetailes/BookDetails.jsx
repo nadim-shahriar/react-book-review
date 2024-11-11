@@ -1,6 +1,9 @@
 
-import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { getSavedReadBooks, saveReadBooks } from "../../utility/localStorageReadBooks";
+import { removeWishlistBooks, saveWishlistBooks } from "../../utility/localStorageWishlist";
 
 
 const BookDetails = () => {
@@ -141,26 +144,46 @@ const BookDetails = () => {
         }
     ]
 
-
+    
     const book = books.find(book => book.bookId === id)
     console.log(book)
 
-    const { image, bookName, publisher, category, review, tags, totalPages, author, yearOfPublishing, rating } = book
+    const {bookId, image, bookName, publisher, category, review, tags, totalPages, author, yearOfPublishing, rating } = book
+
+    const idInt = parseInt(bookId)
+
+
+    const handleReadBooks = () => {
+        saveReadBooks(idInt);
+        removeWishlistBooks(idInt)
+    }
+
+    
+
+    const handleWishlistBooks =()=>{
+        const storedReadIds = getSavedReadBooks();
+        if(storedReadIds.includes(idInt)){
+            toast("This book is already in Read book list")
+        }
+        else{
+            saveWishlistBooks(idInt)
+        }
+    }
 
     return (
         <div className="container mx-auto my-[60px]">
             <div className="flex gap-12">
-                <div className="flex-1 bg-[#1313130D] py-[75px] flex justify-center">
+                <div className="flex-1 bg-[#1313130D] rounded-2xl shadow-2xl py-[75px] flex justify-center">
                     <img className="w-[425px] h-[550px]" src={image} alt="" />
                 </div>
                 <div className="flex-1">
                     <h1 className="text-5xl font-bold">{bookName}</h1>
-                    <h3 className="text-xl font-medium">By: {author}</h3>
+                    <h3 className="text-xl my-6 font-medium">By: {author}</h3>
                     <hr />
-                    <h4 className="text-xl">{category}</h4>
+                    <h4 className="text-xl my-4">{category}</h4>
                     <hr />
-                    <p><span className="font-bold">Review:</span>{review}</p>
-                    <div className='flex gap-8 my-6 items-center font-bold'>Tags:
+                    <p className="my-6"><span className="font-bold">Review: </span>{review}</p>
+                    <div className='flex gap-8 my-6 items-center font-bold'>Tags
                         {
                             tags.map((tag, idx) => <ul className='text-[#23BE0A]' key={idx}>
                                 <li className='bg-[#23BE0A0D] py-2 px-4 rounded-full'>{tag}</li>
@@ -168,12 +191,27 @@ const BookDetails = () => {
                         }
                     </div>
                     <hr />
-                    <p>Number of pages: {totalPages}</p>
-                    <p>Publisher: {publisher}</p>
-                    <p>Year of Publishing: {yearOfPublishing}</p>
-                    <p>Rating: {rating}</p>
+                    <div className="flex items-center gap-10">
+                        <div>
+                            <p className="mt-6">Number of pages: </p>
+                            <p className="mt-3">Publisher: </p>
+                            <p className="mt-3">Year of Publishing: </p>
+                            <p className="mt-3">Rating: </p>
+                        </div>
+                        <div>
+                            <p className="font-bold font-2 mt-6">{totalPages}</p>
+                            <p className="font-bold font-2 mt-3">{publisher}</p>
+                            <p className="font-bold font-2 mt-3">{yearOfPublishing}</p>
+                            <p className="font-bold font-2 mt-3">{rating}</p>
+                        </div>
+                    </div>
+                    <div className="flex gap-4 my-8">
+                        <button onClick={handleReadBooks} className="btn font-2 text-black px-7 border-[#1313134D]">Read</button>
+                        <button onClick={handleWishlistBooks} className="btn font-2 text-white px-7 bg-[#50B1C9]">Wishlist</button>
+                    </div>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     );
 };
