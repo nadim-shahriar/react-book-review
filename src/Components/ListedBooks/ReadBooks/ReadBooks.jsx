@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { getSavedReadBooks } from "../../../utility/localStorageReadBooks";
 import ReadBook from "../ReadBook/ReadBook";
+import EmptyReadBooks from "./EmptyReadBooks";
 
 
 const ReadBooks = () => {
@@ -23,7 +24,10 @@ const ReadBooks = () => {
     return (
         <div className="my-8 flex flex-col gap-6">
             {
-                readBooks.map(book => <ReadBook 
+                readBooks.length === 0 && <EmptyReadBooks></EmptyReadBooks>
+            }
+            {
+                readBooks.map(book => <ReadBook
                     key={book.bookId}
                     book={book}
                 ></ReadBook>)

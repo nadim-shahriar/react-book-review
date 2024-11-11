@@ -9,7 +9,7 @@ import ListedBooks from './Components/ListedBooks/ListedBooks'
 import ViewAllBooks from './Components/ViewAllBBooks/ViewAllBooks'
 import BookDetails from './Components/BookDetailes/BookDetails'
 import ReadBooks from './Components/ListedBooks/ReadBooks/ReadBooks'
-import Wishlist from './Components/ListedBooks/Wishlist/Wishlist'
+import WishlistBooks from './Components/ListedBooks/WishlistBooks/WishlistBooks'
 
 const router = createBrowserRouter([
   {
@@ -34,7 +34,8 @@ const router = createBrowserRouter([
           },
           {
             path: '/listed-books/wishlist',
-            element:<Wishlist></Wishlist>
+            element: <WishlistBooks></WishlistBooks>,
+            loader:()=> fetch('/books.json')
           }
         ]
       },
