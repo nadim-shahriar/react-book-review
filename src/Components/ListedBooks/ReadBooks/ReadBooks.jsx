@@ -13,13 +13,14 @@ const ReadBooks = () => {
 
     useEffect(() => {
         const storedBookIds = getSavedReadBooks()
-        console.log(storedBookIds)
+        // console.log(storedBookIds)
         if (books) {
             const booksRead = books.filter(book => storedBookIds.includes(book.bookId))
-            console.log(booksRead)
+            // console.log(booksRead)
             setReadBooks(booksRead)
         }
     }, [])
+
 
     return (
         <div className="my-8 flex flex-col gap-6">

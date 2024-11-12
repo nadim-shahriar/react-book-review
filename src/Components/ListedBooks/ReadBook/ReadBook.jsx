@@ -4,7 +4,7 @@ import { MdInsertPageBreak } from "react-icons/md";
 import { Link } from 'react-router-dom';
 
 const ReadBook = ({ book }) => {
-    console.log(book)
+    // console.log(book)
 
     const {bookId, image, bookName, author, tags, publisher, totalPages, category, rating } = book
 
