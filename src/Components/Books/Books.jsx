@@ -15,7 +15,7 @@ const Books = () => {
             <div className="py-9">
                 <h1 className="text-4xl font-bold text-center">Books</h1>
             </div>
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {
                     books.slice(0, displayBooksLength).map(book => <Link to={`/book-details/${book.bookId}`} key={book.bookId}>
                         <Book

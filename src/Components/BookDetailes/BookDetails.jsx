@@ -172,21 +172,21 @@ const BookDetails = () => {
 
     return (
         <div className="container mx-auto my-[60px]">
-            <div className="flex gap-12">
+            <div className="flex flex-col lg:flex-row gap-5 lg:gap-12">
                 <div className="flex-1 bg-[#1313130D] rounded-2xl shadow-2xl py-[75px] flex justify-center">
-                    <img className="w-[425px] h-[550px]" src={image} alt="" />
+                    <img className="lg:w-[425px] lg:h-[550px]" src={image} alt="" />
                 </div>
-                <div className="flex-1">
-                    <h1 className="text-5xl font-bold">{bookName}</h1>
+                <div className="flex-1 p-10 lg:p-0">
+                    <h1 className="text-3xl lg:text-5xl font-bold">{bookName}</h1>
                     <h3 className="text-xl my-6 font-medium">By: {author}</h3>
                     <hr />
                     <h4 className="text-xl my-4">{category}</h4>
                     <hr />
                     <p className="my-6"><span className="font-bold">Review: </span>{review}</p>
-                    <div className='flex gap-8 my-6 items-center font-bold'>Tags
+                    <div className='flex gap-1 lg:gap-8 my-6 items-center font-bold'>Tags
                         {
                             tags.map((tag, idx) => <ul className='text-[#23BE0A]' key={idx}>
-                                <li className='bg-[#23BE0A0D] py-2 px-4 rounded-full'>{tag}</li>
+                                <li className='bg-[#23BE0A0D] py-1 lg:py-2 px-2 lg:px-4 rounded-full'>{tag}</li>
                             </ul>)
                         }
                     </div>

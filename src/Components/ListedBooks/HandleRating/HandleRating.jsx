@@ -161,7 +161,7 @@ const HandleRating = () => {
 
     return (
         <div className="my-8 flex flex-col gap-6">
-            <h3 className="text-lg"><span className="font-bold">Sorted By:</span> Rating</h3>
+            <h3 className="text-lg pl-6 lg:pl-1"><span className="font-bold">Sorted By:</span> Rating</h3>
             {
                 readBooks.length === 0 && <EmptyReadBooks></EmptyReadBooks>
             }

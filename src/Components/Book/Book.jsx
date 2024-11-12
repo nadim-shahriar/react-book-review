@@ -8,7 +8,7 @@ const Book = ({ book }) => {
             <div className=' bg-[#F3F3F3] rounded-2xl p-8 flex justify-center'>
                 <img className='w-[134px] h-[166px]' src={image} alt="" />
             </div>
-            <div className='flex gap-8 my-6'>
+            <div className='flex flex-col lg:flex-row gap-2 lg:gap-8 my-6'>
                 {
                     tags.map((tag, idx) => <ul className='text-[#23BE0A]' key={idx}>
                         <li className='bg-[#23BE0A0D] py-2 px-4 rounded-full'>{tag}</li>
